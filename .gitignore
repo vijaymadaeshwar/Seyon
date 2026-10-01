@@ -1,0 +1,17 @@
+# Each component is its own git repository with its own history. The root
+# repo tracks only the wiring between them: the agent identity, the
+# opencode config, and the launchers. Vendoring them here would duplicate
+# their histories and make every update a merge conflict.
+ai-visualizer/
+barehands/
+backtalk/
+fullstack-agent/
+ai-memory-vault/
+
+# Runtime output
+*.log
+supervisor.log
+
+# Config backups
+*.json.bak-*
+*.json.*.bak
