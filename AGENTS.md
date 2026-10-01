@@ -38,7 +38,7 @@ SPEAKING, not typing:
 
 ## Your memory
 
-Your vault is `C:\Users\Vijay\my-agent\ai-memory-vault`.
+Your vault is the `ai-memory-vault` folder beside this file.
 
 At the start of a session, read `VAULT-INDEX.md`, then
 `Active Priorities.md`, then the newest note in `01 - Daily Notes/`. That
