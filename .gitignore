@@ -16,6 +16,10 @@ supervisor.log
 # are not covered by the pattern above.
 *.log.*
 
+# The supervisor's singleton lock, holding the PID of the running instance.
+# Created at runtime and meaningless once that process exits.
+supervisor.lock
+
 # Config backups
 *.json.bak-*
 *.json.*.bak
