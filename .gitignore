@@ -11,6 +11,10 @@ ai-memory-vault/
 # Runtime output
 *.log
 supervisor.log
+# Rotated logs are named supervisor.log.1, backtalk.log.2 and so on -- the
+# supervisor caps the log and archives it, so these appear on their own and
+# are not covered by the pattern above.
+*.log.*
 
 # Config backups
 *.json.bak-*
