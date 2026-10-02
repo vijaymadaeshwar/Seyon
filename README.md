@@ -69,12 +69,37 @@ not a service that should pop up a window nobody asked for.
 
 ## Tests
 
+The supervisor suite needs nothing but a Python:
+
 ```
-py -3 fullstack-agent\tests\test_supervisor.py    # the watchdog, no live stack needed
-py -3 backtalk\tests\test_e2e.py                 # voice end to end
-py -3 backtalk\tests\test_stt_langs.py           # multilingual speech in
-py -3 backtalk\tests\test_espeak_fallback.py     # languages Kokoro has no voice for
+py -3 fullstack-agent\tests\test_supervisor.py
 ```
+
+The backtalk suites need backtalk's own environment, not the system Python.
+The system Python has numpy and soundfile but not kokoro, so it fails partway
+into the first real synthesis with `ModuleNotFoundError: No module named
+'kokoro'` — which reads like a broken install rather than a wrong command.
+Run them from inside `backtalk` with `uv`:
+
+```
+cd backtalk
+uv sync
+uv run python tests\test_espeak_fallback.py    # languages Kokoro has no voice for
+uv run python tests\test_stt_langs.py          # multilingual speech in
+uv run python tests\test_e2e.py                # a whole turn, in to out
+```
+
+Two things to know before you trust a result:
+
+- Each script exits nonzero when it fails, so this works in a script or CI.
+- Run `test_e2e.py` **on its own, first**. It asserts the brain answers in
+  under 90s, which is a real user-facing limit, but it competes with the
+  other two for memory: they each load their own Kokoro, and with the live
+  stack up that is three models at once, which has pushed the first reply
+  past the limit. Standalone it lands between 6 and 25s.
+
+`test_stt_langs.py` treats a language it could not test as a failure, not a
+pass, so "close the live stack and re-run" if it reports one as untested.
 
 ## Licence
 
