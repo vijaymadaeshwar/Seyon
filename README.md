@@ -103,7 +103,8 @@ pass, so "close the live stack and re-run" if it reports one as untested.
 
 ## Licence
 
-This repo holds only the wiring: the agent identity, the config, and the
-launchers. The five tools beside it are AGPL-3.0, © 2026 Jared Rhodenizer,
-and their licence terms apply to them and to anything derived from them.
-Read each repo's LICENSE before redistributing.
+This repo is AGPL-3.0, Copyright (C) 2026 Vijay Madaeshwar — see
+`LICENSE`. It holds only the wiring: the agent identity, the config, and
+the launchers. The five tools beside it are AGPL-3.0, Copyright (C) 2026
+Jared Rhodenizer, and their licence terms apply to them and to anything
+derived from them. Read each repo's LICENSE before redistributing.
